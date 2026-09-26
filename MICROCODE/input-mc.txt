@@ -1,0 +1,532 @@
+# NEW X Y <- MICROCODE FOR NEW INSTRUCTION NAMED 'X' WITH 'Y' BYTES OF LENGTH IN RAM
+# END   <- MICROCODE FINISHED FOR CURRENT INSTRUCTION
+
+# JUMPS..
+# MNEMONICS START WITH 'J' ARE RESERVED FOR ANY JUMP INSTRUCTIONS
+# NEW X Y Z WITH 'Z' AS JUMP CONDITION
+# SEE POSSIBLE VALUES FOR 'Z' IN THE CODE
+
+# ---------------------------
+# FETCH CYCLE
+NEW FETCH 0
+FETCH MPo RAMany
+END
+# ---------------------------
+NEW NOP 1
+MPp
+END
+# ---------------------------
+NEW LVA 2
+MPp
+MPo RAMany RAMo
+MDo Ai MPp
+END
+# ---------------------------
+NEW LVB 2
+MPp
+MPo RAMany RAMo
+MDo Bi MPp
+END
+# ---------------------------
+NEW LVC 2
+MPp
+MPo RAMany RAMo
+MDo Ci MPp
+END
+# ---------------------------
+NEW LAA 3
+MPp
+MPo RAMany RAMo
+MDo MAihblb MPp
+MPo RAMany RAMo
+MDo MAilblb MPp
+MAo RAMany RAMo
+MDo Ai
+END
+# ---------------------------
+NEW LAB 3
+MPp
+MPo RAMany RAMo
+MDo MAihblb MPp
+MPo RAMany RAMo
+MDo MAilblb MPp
+MAo RAMany RAMo
+MDo Bi
+END
+# ---------------------------
+NEW LAC 3
+MPp
+MPo RAMany RAMo
+MDo MAihblb MPp
+MPo RAMany RAMo
+MDo MAilblb MPp
+MAo RAMany RAMo
+MDo Ci
+END
+# ---------------------------
+NEW SVA 3
+MPp
+MPo RAMany RAMo
+MDo MAihblb MPp
+MPo RAMany RAMo
+MDo MAilblb MPp
+Ao MDi
+MAo RAMany MDoram RAMi
+END
+# ---------------------------
+NEW SVB 3
+MPp
+MPo RAMany RAMo
+MDo MAihblb MPp
+MPo RAMany RAMo
+MDo MAilblb MPp
+Bo MDi
+MAo RAMany MDoram RAMi
+END
+# ---------------------------
+NEW SVC 3
+MPp
+MPo RAMany RAMo
+MDo MAihblb MPp
+MPo RAMany RAMo
+MDo MAilblb MPp
+Co MDi
+MAo RAMany MDoram RAMi
+END
+# ---------------------------
+NEW TBA 1
+Bi Ao MPp
+END
+# ---------------------------
+NEW TCA 1
+Ci Ao MPp
+END
+# ---------------------------
+NEW TAB 1
+Ai Bo MPp
+END
+# ---------------------------
+NEW TCB 1
+Ci Bo MPp
+END
+# ---------------------------
+NEW TAC 1
+Ai Co MPp
+END
+# ---------------------------
+NEW TBC 1
+Bi Co MPp
+END
+# ---------------------------
+NEW ADD 1
+A'i Ao MPp
+B'i Bo
+Ai ALUcw{1}
+END
+# ---------------------------
+NEW ADV 2
+MPp A'i Ao
+MPo RAMany RAMo
+B'i MDo MPp
+Ai ALUcw{1}
+END
+# ---------------------------
+NEW ADA 3
+MPp A'i Ao
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+B'i MDo
+Ai ALUcw{1}
+END
+# ---------------------------
+NEW ADC 1
+A'i Ao MPp
+B'i Bo
+Ai ALUcw{2}
+END
+# ---------------------------
+NEW ACV 2
+MPp A'i Ao
+MPo RAMany RAMo
+B'i MDo MPp
+Ai ALUcw{2}
+END
+# ---------------------------
+NEW ACA 3
+MPp A'i Ao
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+B'i MDo
+Ai ALUcw{2}
+END
+# ---------------------------
+NEW INA 1
+A'i Ao MPp
+Ai ALUcw{3}
+END
+# ---------------------------
+NEW INB 1
+A'i Bo MPp
+Bi ALUcw{3}
+END
+# ---------------------------
+NEW INC 1
+A'i Co MPp
+Ci ALUcw{3}
+END
+# ---------------------------
+NEW NOT 1
+A'i Ao MPp
+Ai ALUcw{4}
+END
+# ---------------------------
+NEW TWO 1
+A'i Ao MPp
+A'i ALUcw{4}
+Ai ALUcw{3}
+END
+# ---------------------------
+NEW TWA 3
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+A'i MDo
+A'i ALUcw{4}
+Ai ALUcw{3}
+END
+# ---------------------------
+NEW AND 1
+A'i Ao MPp
+B'i Bo
+Ai ALUcw{5}
+END
+# ---------------------------
+NEW ANV 2
+MPp A'i Ao
+MPo RAMany RAMo
+B'i MDo MPp
+Ai ALUcw{5}
+END
+# ---------------------------
+NEW ANA 3
+MPp A'i Ao
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+B'i MDo
+Ai ALUcw{5}
+END
+# ---------------------------
+NEW ORR 1
+A'i Ao MPp
+B'i Bo
+Ai ALUcw{6}
+END
+# ---------------------------
+NEW ORV 2
+MPp A'i Ao
+MPo RAMany RAMo
+B'i MDo MPp
+Ai ALUcw{6}
+END
+# ---------------------------
+NEW ORA 3
+MPp A'i Ao
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+B'i MDo
+Ai ALUcw{6}
+END
+# ---------------------------
+NEW XOR 1
+A'i Ao MPp
+B'i Bo
+Ai ALUcw{7}
+END
+# ---------------------------
+NEW XOV 2
+MPp A'i Ao
+MPo RAMany RAMo
+B'i MDo MPp
+Ai ALUcw{7}
+END
+# ---------------------------
+NEW XOA 3
+MPp A'i Ao
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+B'i MDo
+Ai ALUcw{7}
+END
+# ---------------------------
+NEW SLR 1
+A'i Ao MPp
+Ai ALUcw{8}
+END
+# ---------------------------
+NEW SLA 3
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+A'i MDo
+Ai ALUcw{8}
+END
+# ---------------------------
+NEW SXR 1
+A'i Ao MPp
+Ai ALUcw{9}
+END
+# ---------------------------
+NEW SXA 3
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+A'i MDo
+Ai ALUcw{9}
+END
+# ---------------------------
+NEW SLL 1
+A'i Ao MPp
+Ai ALUcw{10}
+END
+# ---------------------------
+NEW SYA 3
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+A'i MDo
+Ai ALUcw{10}
+END
+# ---------------------------
+NEW SZL 1
+A'i Ao MPp
+Ai ALUcw{11}
+END
+# ---------------------------
+NEW SZA 3
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+A'i MDo
+Ai ALUcw{11}
+END
+# ---------------------------
+NEW SRR 1
+A'i Ao MPp
+Ai ALUcw{12}
+END
+# ---------------------------
+NEW SRA 3
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+A'i MDo
+Ai ALUcw{12}
+END
+# ---------------------------
+NEW SRL 1
+A'i Ao MPp
+Ai ALUcw{13}
+END
+# ---------------------------
+NEW SWA 3
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo RAMany RAMo
+A'i MDo
+Ai ALUcw{13}
+END
+# ---------------------------
+NEW CCF 1
+MPp CFc
+END
+# ---------------------------
+NEW JMP 3 1
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo JMP
+END
+# ---------------------------
+NEW JZZ 3 Z
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo JMP
+END
+# ---------------------------
+NEW JNZ 3 !Z
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo JMP
+END
+# ---------------------------
+NEW JNE 3 N
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo JMP
+END
+# ---------------------------
+NEW JNN 3 !N
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo JMP
+END
+# ---------------------------
+NEW JCC 3 C
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo JMP
+END
+# ---------------------------
+NEW JNC 3 !C
+MPp
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MAo JMP
+END
+# ---------------------------
+NEW CZF 1
+MPp ZFc
+END
+# ---------------------------
+NEW CNF 1
+MPp NFc
+END
+# ---------------------------
+NEW SFZ 1
+MPp ZFs
+END
+# ---------------------------
+NEW SFN 1
+MPp NFs
+END
+# ---------------------------
+NEW SFC 1
+MPp CFs
+END
+# ---------------------------
+NEW SBR 3
+SPp MDi Ao MPp
+SPo RAMany MDoram RAMi
+MDi Bo SPp
+SPo RAMany MDoram RAMi
+MDi Co SPp
+SPo RAMany MDoram RAMi
+MDi Fo SPp
+SPo RAMany MDoram RAMi
+MAilblb MAihbhb MPo
+MDi MAolbhb SPp
+SPo RAMany MDoram RAMi
+MDi MAo SPp
+SPo RAMany MDoram RAMi
+MPo RAMany RAMo
+MAihblb MDo MPp
+MPo RAMany RAMo
+MAilblb MDo MPp
+MPi MAo
+END
+# ---------------------------
+NEW RET 1
+SPo RAMany RAMo
+SPm MAilblb MDo
+SPo RAMany RAMo
+SPm MAihblb MDo
+MPi MAo
+SPo RAMany RAMo MPp
+SPm Fi MDo MPp
+SPo RAMany RAMo
+SPm Ci MDo
+SPo RAMany RAMo
+SPm Bi MDo
+SPo RAMany RAMo
+SPm Ai MDo
+END
+# ---------------------------
+NEW SSP 2
+MPp
+MPo RAMany RAMo
+MDo SPi MPp
+END
+# ---------------------------
+NEW UFA 1
+A'i Ao MPp
+ALUcw{14}
+END
+# ---------------------------
+NEW UFB 1
+A'i Bo MPp
+ALUcw{14}
+END
+# ---------------------------
+NEW UFC 1
+A'i Co MPp
+ALUcw{14}
+END
+# ---------------------------
+NEW LPA 1
+MAihblb Bo MPp
+MAilblb Co
+MAo RAMany RAMo
+MDo Ai
+END
+# ---------------------------
+NEW SPA 1
+MAihblb Bo MPp
+MAilblb Co
+Ao MDi
+MAo RAMany MDoram RAMi
+END
