@@ -1,0 +1,8 @@
+stats:
+ram bytes used: 448
+number of lines: 194
+number of full comment/empty lines: 89
+number of instructions: 73
+number of dir_label: 14
+number of data_label: 18
+file amount: 2

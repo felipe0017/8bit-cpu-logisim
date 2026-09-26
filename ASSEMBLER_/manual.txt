@@ -1,0 +1,79 @@
+comentarios:
+# hola
+comenta la linea completa
+NOP # hola
+comenta desde el simbolo '#'
+
+*lineas vacias son ignoradas
+*lineas que empiezan con uno/varios tabs horizontales son permitidas
+
+parametros:
+99
+-12
+3
+parametros decimales validos
+*pueden tener ancho variable
+*deben ser menores a 256
+0X06
+0X00
+0XFF
+parametros hexadecimales validos
+*deben tener el simbolo 'X' en minuscula
+*deben tener 2 digitos hexadecimales. si solo tienen 1, ponerle un cero extra
+0B-0000-0111
+0B-0000-0000
+parametros binarios validos
+*deben tener el simbolo 'B' y los guiones '-'
+*deben tener 8 bits
+
+dir_label:
+etiquetas de direccion no computables
+su uso es para subrutinas e instrucciones de saltos
+se declaran:
+@{name}:
+name es el nombre de la etiqueta
+se usan:
+JMP @{name}
+*se puede usar una etiqueta incluso antes de ser declarada
+*sus instrucciones se colocan en las lineas siguientes
+*dir_Label @END: esta reservada por el sistema y NO debe usarse en ensamblador
+
+data_label:
+etiquetas de datos altamente flexibles
+para todo uso, principalmente para variables
+se declaran:
+%{name}: x y z
+*sus datos se incluyen en la misma linea donde se declara
+*puede tener 1 o mas datos
+*sus datos son bytes
+*sus datos son analizados de la misma forma que parametros, por lo que pueden estar
+en decimal, hexadecimal o binario
+*se puede usar una etiqueta incluso antes de ser declarada
+*data_Label @END: NO esta reservada por el sistema y SI puede usarse en ensamblador
+se pueden declarar tambien:
+%LIST: 1 2 3
+%LIST: 4 5 6
+lo anterior declara una etiqueta llamada LIST que contiene los datos 1 2 3 4 5 6
+es decir se permiten data_label multi-byte y multi-linea
+se usan:
+LAA %{name}
+%{name} hace mencion a la direccion del primer byte de la lista, lo que vendria siendo
+un puntero de lista en c++, por lo que ocupa 2 bytes
+LVA >LIST
+LVA <LIST
+estos operandos pueden usarse antes de declarar la etiqueta llamada LIST y representan
+el byte alto y el bajo de la direccion del primer byte de LIST
+* se coloca el nombre de la etiqueta de datos, sin el prefijo '%'
+'>' representa el byte alto y '<' el byte bajo
+pueden combinarse con parametros por ejemplo:
+LAA 0X0A <LIST
+representan un dato de un byte de longitud
+
+multiarchivos:
+se pueden incluir multiples archivos en el proyecto
+sin embargo el archivo principal debe llamarse "input-code.txt"
+para añadir archivos usar:
+FILE {FILENAME}
+FILENAME es el nombre del archivo con su extension .txt
+se pueden añadir archivos dentro de otros archivos y asi
+es totalmente flexible y comodo
