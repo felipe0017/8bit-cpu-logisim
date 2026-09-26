@@ -1,0 +1,15 @@
+añadir nueva instruccion:
+añadir instruccion al archivo "INSTRUCTION-SET.txt"
+escribir microcodigo en "MICROCODE/input-mc.txt"
+compilar microcodigo
+actualizar el contenido de todas las memorias RAM/ROM de la cpu
+guardar y salir de logiisim
+actualizar la copia de seguridad
+probar la instruccion en logiisim de forma independiente (sin stack ni nada)
+ver el tiempo que demora la instruccion en ciclos de reloj en el archivo "MICROCODE/output-length.txt"
+poner ese tiempo en "INSTRUCTION-SET.txt"
+abrir el proyecto en c++ dentro de la carpeta llamada ASSEMBLER
+ir al archivo del proyecto llamado "misc.h"
+habran dos std::vector que contienen el nombre de las instrucciones y sus bytes de longitud en ensamblador
+se llaman instruction_name y instruction_lenght, añadir los datos de la nueva instruccion creada en estos std::vector
+fin

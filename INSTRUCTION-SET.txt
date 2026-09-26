@@ -1,0 +1,108 @@
+INSTRUCTION SET:
+CODE-OP │ NEMONIC │ TYPE     │ FORMAT            │ DESCRIPTION                                            │ DESCRIPTION 2                │ LENGHT │ TIME*
+--------+---------+--------- +-------------------+--------------------------------------------------------+------------------------------+--------+------
+        │ FETCH   │ SPECIAL  │                   │ READ NEXT INSTRUCTION                                  │                              │        │ 1
+0       │ NOP     │ CONTROL  │ NOP               │ DO "NOTHING" AND WAIT                                  │ WAIT                         │ 1      │ 2
+1       │ LVA     │ LOAD     │ LVA {V}           │ LOAD A WITH VALUE                                      │ A <- RAM                     │ 2      │ 4
+2       │ LVB     │ LOAD     │ LVB {V}           │ LOAD B WITH VALUE                                      │ B <- RAM                     │ 2      │ 4
+3       │ LVC     │ LOAD     │ LVC {V}           │ LOAD C WITH VALUE                                      │ C <- RAM                     │ 2      │ 4
+4       │ LAA     │ LOAD     │ LAA {HB} {LB}     │ LOAD A WITH VALUE IN ADDRESS                           │ A <- &RAM                    │ 3      │ 8
+5       │ LAB     │ LOAD     │ LAB {HB} {LB}     │ LOAD B WITH VALUE IN ADDRESS                           │ B <- &RAM                    │ 3      │ 8
+6       │ LAC     │ LOAD     │ LAC {HB} {LB}     │ LOAD C WITH VALUE IN ADDRESS                           │ C <- &RAM                    │ 3      │ 8
+7       │ SVA     │ STORE    │ SVA {HB} {LB}     │ STORE A IN ADDRESS                                     │ RAM <- A                     │ 3      │ 8
+8       │ SVB     │ STORE    │ SVB {HB} {LB}     │ STORE B IN ADDRESS                                     │ RAM <- B                     │ 3      │ 8
+9       │ SVC     │ STORE    │ SVC {HB} {LB}     │ STORE C IN ADDRESS                                     │ RAM <- C                     │ 3      │ 8
+10      │ TBA     │ TRANSFER │ TBA               │ TRANSFER A TO B                                        │ B <- A                       │ 1      │ 2
+11      │ TCA     │ TRANSFER │ TCA               │ TRANSFER A TO C                                        │ C <- A                       │ 1      │ 2
+12      │ TAB     │ TRANSFER │ TAB               │ TRANSFER B TO A                                        │ A <- B                       │ 1      │ 2
+13      │ TCB     │ TRANSFER │ TCB               │ TRANSFER B TO C                                        │ C <- B                       │ 1      │ 2
+14      │ TAC     │ TRANSFER │ TAC               │ TRANSFER C TO A                                        │ A <- C                       │ 1      │ 2
+15      │ TBC     │ TRANSFER │ TBC               │ TRANSFER C TO B                                        │ B <- C                       │ 1      │ 2
+16      │ ADD     │ MATH     │ ADD               │ ADD A WITH B                                           │ A <- A + B                   │ 1      │ 4
+17      │ ADV     │ MATH     │ ADV {V}           │ ADD A WITH VALUE                                       │ A <- A + RAM                 │ 2      │ 5
+18      │ ADA     │ MATH     │ ADA {HB} {LB}     │ ADD A WITH VALUE IN ADDRESS                            │ A <- A + &RAM                │ 3      │ 9
+19      │ ADC     │ MATH     │ ADD               │ ADD A WITH B W/CF                                      │ A <- A + B + CF              │ 1      │ 4
+20      │ ACV     │ MATH     │ ADV {V}           │ ADD A WITH VALUE WITH CF                               │ A <- A + RAM + CF            │ 2      │ 5
+21      │ ACA     │ MATH     │ ADA {HB} {LB}     │ ADD A WITH VALUE IN ADDRESS W/CF                       │ A <- A + &RAM + CF           │ 3      │ 9
+22      │ INA     │ MATH     │ INA               │ INCREMENT A                                            │ A <- A + 1                   │ 1      │ 3
+23      │ INB     │ MATH     │ INB               │ INCREMENT B                                            │ B <- B + 1                   │ 1      │ 3
+24      │ INC     │ MATH     │ INC               │ INCREMENT C                                            │ C <- C + 1                   │ 1      │ 3
+25      │ NOT     │ MATH     │ NOT               │ BITWISE-NOT A                                          │ A <- ~A                      │ 1      │ 3
+26      │ TWO     │ MATH     │ TWO               │ SECOND COMPLEMENT TO A                                 │ A <- ~A + 1                  │ 1      │ 4
+27      │ TWA     │ MATH     │ TWA {HB} {LB}     │ SECOND COMPLEMENT VALUE IN ADDRESS                     │ A <- ~&RAM + 1               │ 3      │ 10
+28      │ AND     │ MATH     │ AND               │ BITWISE-AND A WITH B                                   │ A <- A & B                   │ 1      │ 4
+29      │ ANV     │ MATH     │ ANV {V}           │ BITWISE-AND A WITH VALUE                               │ A <- A & RAM                 │ 2      │ 5
+30      │ ANA     │ MATH     │ ANA {HB} {LB}     │ BITWISE-AND A WITH VALUE IN ADDRESS                    │ A <- A & &RAM                │ 3      │ 6
+31      │ ORR     │ MATH     │ ORR               │ BITWISE-OR A WITH B                                    │ A <- A │ B                   │ 1      │ 4
+32      │ ORV     │ MATH     │ ORV {V}           │ BITWISE-OR A WITH VALUE                                │ A <- A │ RAM                 │ 2      │ 5
+33      │ ORA     │ MATH     │ ORA {HB} {LB}     │ BITWISE-OR A WITH VALUE IN ADDRESS                     │ A <- A │ &RAM                │ 3      │ 9
+34      │ XOR     │ MATH     │ XOR               │ BITWISE-XOR A WITH B                                   │ A <- A (+) B                 │ 1      │ 4
+35      │ XOV     │ MATH     │ XOV {V}           │ BITWISE-XOR A WITH VALUE                               │ A <- A (+) RAM               │ 2      │ 5
+36      │ XOA     │ MATH     │ XOA {HB} {LB}     │ BITWISE-XOR A WITH VALUE IN ADDRESS                    │ A <- A (+) &RAM              │ 3      │ 9
+37      │ SLR     │ MATH     │ SLR               │ SLR A                                                  │ A <- A    >> 1               │ 1      │ 3
+38      │ SLA     │ MATH     │ SLA {HB} {LB}     │ SLR VALUE IN ADDRESS                                   │ A <- &RAM >> 1               │ 3      │ 9
+39      │ SXR     │ MATH     │ SXR               │ SLR A W/CF                                             │ A <- (A    >> 1) │ (CF << 7) │ 1      │ 3
+40      │ SXA     │ MATH     │ SXA {HB} {LB}     │ SLR VALUE IN ADDRESS W/CF                              │ A <- (&RAM >> 1) │ (CF << 7) │ 3      │ 9
+41      │ SLL     │ MATH     │ SLL               │ SLL A                                                  │ A <- A    << 1               │ 1      │ 3
+42      │ SYA     │ MATH     │ SYA {HB} {LB}     │ SLL VALUE IN ADDRESS                                   │ A <- &RAM << 1               │ 3      │ 9
+43      │ SZL     │ MATH     │ SZL               │ SLL A W/CF                                             │ A <- (A    << 1) │ CF        │ 1      │ 3
+44      │ SZA     │ MATH     │ SZA {HB} {LB}     │ SLL VALUE IN ADDRESS W/CF                              │ A <- (&RAM << 1) │ CF        │ 3      │ 9
+45      │ SRR     │ MATH     │ SRR               │ SRR A                                                  │ A <- A    >>(ROT) 1          │ 1      │ 3
+46      │ SRA     │ MATH     │ SRA {HB} {LB}     │ SRR VALUE IN ADDRESS                                   │ A <- &RAM >>(ROT) 1          │ 3      │ 9
+47      │ SRL     │ MATH     │ SRL               │ SRL A                                                  │ A <- A    <<(ROT) 1          │ 1      │ 3
+48      │ SWA     │ MATH     │ SWA {HB} {LB}     │ SRL VALUE IN ADDRESS                                   │ A <- &RAM <<(ROT) 1          │ 3      │ 9
+49      │ CCF     │ CONTROL  │ CCF               │ CLEAR CARRY FLAG                                       │ CF <- 0                      │ 1      │ 2
+50      │ JMP     │ JUMP     │ JMP {HB} {LB}     │ JUMP FORCED                                            │ MP <- ADDRESS                │ 3      │ 7
+51      │ JZZ     │ JUMP     │ JZZ {HB} {LB}     │ JUMP IF ZERO FLAG IS ONE                               │ IF( Z) MP <- ADDRESS         │ 3      │ 7
+52      │ JNZ     │ JUMP     │ JNZ {HB} {LB}     │ JUMP IF ZERO FLAG IS ZERO                              │ IF(!Z) MP <- ADDRESS         │ 3      │ 7
+53      │ JNE     │ JUMP     │ JNE {HB} {LB}     │ JUMP IF NEG  FLAG IS ONE                               │ IF( N) MP <- ADDRESS         │ 3      │ 7
+54      │ JNN     │ JUMP     │ JNN {HB} {LB}     │ JUMP IF NEG  FLAG IS ZERO                              │ IF(!N) MP <- ADDRESS         │ 3      │ 7
+55      │ JCC     │ JUMP     │ JCC {HB} {LB}     │ JUMP IF CARRY FLAG IS ONE                              │ IF( C) MP <- ADDRESS         │ 3      │ 7
+56      │ JNC     │ JUMP     │ JNC {HB} {LB}     │ JUMP IF CARRY FLAG IS ZERO                             │ IF(!C) MP <- ADDRESS         │ 3      │ 7
+57      │ CZF     │ CONTROL  │ CZF               │ CLEAR ZERO FLAG                                        │ ZF <- 0                      │ 1      │ 2
+58      │ CNF     │ CONTROL  │ CNF               │ CLEAR NEG  FLAG                                        │ NF <- 0                      │ 1      │ 2
+59      │ SFZ     │ CONTROL  │ SFZ               │ SET ZERO  FLAG                                         │ ZF <- 1                      │ 1      │ 2
+60      │ SFN     │ CONTROL  │ SFN               │ SET NEG   FLAG                                         │ NF <- 1                      │ 1      │ 2
+61      │ SFC     │ CONTROL  │ SFC               │ SET CARRY FLAG                                         │ CF <- 1                      │ 1      │ 2
+62      │ SBR     │ CONTROL  │ SBR {HB} {LB}     │ ENTER TO SUBROUTINE                                    │                              │ 3      │ 19
+63      │ RET     │ CONTROL  │ RET               │ RETURN FROM CURRENT SUBROUTINE                         │                              │ 1      │ 14
+64      │ SSP     │ CONTROL  │ SSP {V}           │ SET STACK POINTER TO VALUE                             │ SP <- RAM                    │ 2      │ 4
+65      │ UFA     │ CONTROL  │ UFA               │ UPDATE FLAGS WITH VALUE IN A                           │                              │ 1      │ 3
+66      │ UFB     │ CONTROL  │ UFB               │ UPDATE FLAGS WITH VALUE IN B                           │                              │ 1      │ 3
+67      │ UFC     │ CONTROL  │ UFC               │ UPDATE FLAGS WITH VALUE IN C                           │                              │ 1      │ 3
+68      │ LPA     │ LOAD     │ LPA               │ LIKE LAA, WITH ADDRESS HIGH/LOW BYTES IN B/C REGISTERS │ A <- &((B<<8) | C)           │ 1      │ 5
+69      │ SPA     │ STORE    │ SPA               │ LIKE SVA, WITH ADDRESS HIGH/LOW BYTES IN B/C REGISTERS │ &((B<<8) | C) <- A           │ 1      │ 5
+
+
+*V = VALUE
+*A = ADDRESS
+*HB = HIGH BYTE
+*LB = LOW BYTE
+TIME* = CLOCK CYCLES CONSUMED, INCLUDING FETCH CYCLE
+*P = POINTER
+
+ALU INSTRUCTION SET:
+CODE-OP │ DESCRIPTION                  │ DESCRIPTION
+--------+------------------------------+----------------------------
+0       │ NOTHING, NO OUTPUT           │ DISABLE ALU OUTPUT TO BUS
+1       │ ADDITION                     │ BUS = A' + B'
+2       │ ADD W/CF                     │ BUS = A' + B' + CF
+3       │ INCREMENT                    │ BUS = A' + 1
+4       │ BITWISE NOT                  │ BUS = ~A'
+5       │ BITWISE AND                  │ BUS = A' & B'
+6       │ BITWISE OR                   │ BUS = A' │ B'
+7       │ BITWISE XOR                  │ BUS = A' ⊕ B'
+8       │ SHIFT LOGICAL RIGHT          │ BUS = A' >> 1'
+9       │ SHIFT LOGICAL RIGHT W/CF     │ BUS = (A' >> 1') │ (CF << 7)
+10      │ SHIFT LOGICAL LEFT           │ BUS = A' << 1'
+11      │ SHIFT LOGICAL LEFT  W/CF     │ BUS = (A' << 1') │ CF
+12      │ SHIFT ROTATE  RIGHT          │ BUS = A' >>↺ 1'
+13      │ SHIFT ROTATE  LEFT           │ BUS = A' <<↺ 1'
+14      │ JUST UPDATE FLAGS            │ UPDATE FLAGS WITH VALUE IN A'
+
+FLAGS:
+bbbb bbbb
+---- -cnz
+c <- carry flag
+n <- negative flag
+z <- zero flag
